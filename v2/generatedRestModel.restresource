@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ASCII"?>
+<com.rmt.models:ResourceDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.rmt.models="http://rest-modeling/resource/1.0">
+  <resources name="/v2/incidents">
+    <GET comment="&#xA;&lt;p>If you&#x2019;d like more detailed information about bike incidents, use this endpoint. For mapping, &lt;code>locations&lt;/code> is probably a better bet.&lt;/p>&#xA;&#xA;&lt;p>&lt;strong>Notes on location searching&lt;/strong>: &lt;br />&#xA;- &lt;code>proximity&lt;/code> accepts an ip address, an address, zipcode, city, or latitude,longitude - i.e. &lt;code>70.210.133.87&lt;/code>, &lt;code>210 NW 11th Ave, Portland, OR&lt;/code>, &lt;code>60647&lt;/code>, &lt;code>Chicago, IL&lt;/code>, and &lt;code>45.521728,-122.67326&lt;/code> are all acceptable&lt;br />&#xA;- &lt;code>proximity_square&lt;/code> sets the length of the sides of the square to find matches inside of. The square is centered on the location specified by &lt;code>proximity&lt;/code>. It defaults to 100.&lt;/p>&#xA;">
+      <produces>APPLICATION_JSON</produces>
+      <params comment="&lt;p>Page of results to fetch.&lt;/p>&#xA;" name="page" type="INTEGER"/>
+      <params comment="&lt;p>Number of results to return per page.&lt;/p>&#xA;" name="per_page" type="INTEGER"/>
+      <params comment="&lt;p>End of period&lt;/p>&#xA;" name="occurred_before" type="INTEGER"/>
+      <params comment="&lt;p>Start of period&lt;/p>&#xA;" name="occurred_after" type="INTEGER"/>
+      <params comment="&lt;p>Only incidents of specific type&lt;/p>&#xA;" name="incident_type" type="STRING"/>
+      <params comment="&lt;p>Center of location for proximity search&lt;/p>&#xA;" name="proximity" type="STRING"/>
+      <params comment="&lt;p>Size of the proximity search&lt;/p>&#xA;" name="proximity_square" type="INTEGER"/>
+      <params comment="&lt;p>Full text search of incidents&lt;/p>&#xA;" name="query" type="STRING"/>
+    </GET>
+  </resources>
+  <resources name="/v2/incidents/{id}">
+    <GET>
+      <produces>APPLICATION_JSON</produces>
+    </GET>
+    <entityStructure comment="&lt;p>Incident ID&lt;/p>&#xA;" name="id" type="INTEGER" mandatory="true"/>
+  </resources>
+  <resources name="/v2/locations">
+    <GET comment="&lt;p>&lt;strong>This endpoint behaves exactly like&lt;/strong> &lt;code>incidents&lt;/code>, but returns a valid geojson &lt;code>FeatureCollection&lt;/code> that looks like this:&lt;/p>&#xA;&#xA;&lt;pre>&lt;code>{&#xA;  type: &quot;FeatureCollection&quot;,&#xA;  features: [&#xA;    {&#xA;      type: &quot;Feature&quot;,&#xA;      properties: {&#xA;      id: 4474199,&#xA;      type: &quot;Theft&quot;,&#xA;      occurred_at: 1428536937&#xA;    },&#xA;      geometry: {&#xA;      type: &quot;Point&quot;,&#xA;      coordinates: [ -122.6244177, 45.5164386 ]&#xA;    }&#xA;  }&#xA;}&#xA;&lt;/code>&lt;/pre>&#xA;&#xA;&lt;p>It doesn&#x2019;t paginate. If you pass the &lt;code>all&lt;/code> parameter it returns all matches (which can be big, &amp;gt; 4mb), otherwise it returns the 100 most recent.&lt;/p>&#xA;&#xA;&lt;p>&lt;strong>Go forth and make maps!&lt;/strong>&lt;/p>&#xA;">
+      <produces>APPLICATION_JSON</produces>
+      <params comment="&lt;p>End of period&lt;/p>&#xA;" name="occurred_before" type="INTEGER"/>
+      <params comment="&lt;p>Start of period&lt;/p>&#xA;" name="occurred_after" type="INTEGER"/>
+      <params comment="&lt;p>Only incidents of specific type&lt;/p>&#xA;" name="incident_type" type="STRING"/>
+      <params comment="&lt;p>Center of location for proximity search&lt;/p>&#xA;" name="proximity" type="STRING"/>
+      <params comment="&lt;p>Size of the proximity search&lt;/p>&#xA;" name="proximity_square" type="INTEGER"/>
+      <params comment="&lt;p>Full text search of incidents&lt;/p>&#xA;" name="query" type="STRING"/>
+      <params comment="&lt;p>Max number of results to return. Defaults to 100&lt;/p>&#xA;" name="limit" type="INTEGER"/>
+      <params comment="&lt;p>Give &#x2018;em all to me. Will ignore limit&lt;/p>&#xA;" name="all" type="BOOLEAN"/>
+    </GET>
+  </resources>
+  <resources name="/v2/locations/markers">
+    <GET comment="&lt;p>This behaves exactly like the root &lt;code>locations&lt;/code> endpoint, but returns &lt;a href=&quot;https://github.com/mapbox/simplestyle-spec&quot;>simplestyled markers&lt;/a> (&lt;a href=&quot;https://www.mapbox.com/guides/markers/#simple-style&quot;>mapbox styled markers&lt;/a>)&lt;/p>&#xA;&#xA;&lt;p>&lt;strong>Go forth and make maps!&lt;/strong>&lt;/p>&#xA;">
+      <produces>APPLICATION_JSON</produces>
+      <params comment="&lt;p>End of period&lt;/p>&#xA;" name="occurred_before" type="INTEGER"/>
+      <params comment="&lt;p>Start of period&lt;/p>&#xA;" name="occurred_after" type="INTEGER"/>
+      <params comment="&lt;p>Only incidents of specific type&lt;/p>&#xA;" name="incident_type" type="STRING"/>
+      <params comment="&lt;p>Center of location for proximity search&lt;/p>&#xA;" name="proximity" type="STRING"/>
+      <params comment="&lt;p>Size of the proximity search&lt;/p>&#xA;" name="proximity_square" type="INTEGER"/>
+      <params comment="&lt;p>Full text search of incidents&lt;/p>&#xA;" name="query" type="STRING"/>
+      <params comment="&lt;p>Max number of results to return. Defaults to 100&lt;/p>&#xA;" name="limit" type="INTEGER"/>
+      <params comment="&lt;p>Give &#x2018;em all to me. Will ignore limit&lt;/p>&#xA;" name="all" type="BOOLEAN"/>
+    </GET>
+  </resources>
+  <links xsi:type="com.rmt.models:Navigation" relType="generatedLink" source="//@resources.0/@GET" target="//@resources.1"/>
+  <links xsi:type="com.rmt.models:Navigation" relType="generatedLink" source="//@resources.2/@GET" target="//@resources.3"/>
+</com.rmt.models:ResourceDiagram>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<com.rmt.models:DeploymentModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.rmt.models="http://rest-modeling/deploy/1.0" xmlns:com.rmt.models_1="http://rest-modeling/resource/1.0">
+  <mappings xsi:type="com.rmt.models:LinkMapping">
+    <url xsi:type="com.rmt.models:DynamicURLFragment">
+      <attribute href="generatedRestModel.restresource#//@resources.1/@entityStructure.0"/>
+    </url>
+    <link xsi:type="com.rmt.models_1:Navigation" href="generatedRestModel.restresource#//@links.0"/>
+  </mappings>
+  <mappings xsi:type="com.rmt.models:LinkMapping">
+    <url xsi:type="com.rmt.models:StaticURLFragment" fragment="/markers"/>
+    <link xsi:type="com.rmt.models_1:Navigation" href="generatedRestModel.restresource#//@links.1"/>
+  </mappings>
+</com.rmt.models:DeploymentModel>
